@@ -1,6 +1,8 @@
-#include<iostream>
+#include<iostream>   //    // 
 using namespace std;
-int main() //test test tes
+int main() //test test test 
+
+/*   test            */
 { 
 	int arr[10], tot = 10, i, elem, j, found = 0;
 	cout << "Enter 10 Array Elements: ";
