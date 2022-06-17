@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
-int main()
-{
+int main() //test test tes
+{ 
 	int arr[10], tot = 10, i, elem, j, found = 0;
 	cout << "Enter 10 Array Elements: ";
 	for (i = 0; i < tot; i++)

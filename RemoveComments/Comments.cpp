@@ -13,10 +13,10 @@ void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Targe
 	{
 		for (int i = 0; i < line.length(); ++i)
 		{
-			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) // если строка содержит два подряд // удалить содержимое
+			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) // если строка содержит два подряд // закончить цикл проверки
 				break;
 			else
-				Target << line[i]; // copy the character of the position i to the Target
+				Target << line[i]; // копировать символ позиции i в исходящий поток
 		}
 		Target << endl;
 	}
@@ -24,18 +24,18 @@ void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Targe
 
 void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 {
-	int contaAspas = 1; //initialized as 1, because if don't find "/*" will not set flag true
+	int count = 1; //initialized as 1, because if don't find "/*" will not set flag true
 	if (line.find("/*") < line.length()) // searching for " /* " to eliminate it and all its content.
 	//the .find searchs in the forward direction for the first occurrence of a substring that matches
 	//the specified sequence of characters and returns its position
 	{
-		contaAspas = 0;
+		count = 0;
 		for (int i = 0; i < line.find("/*"); ++i) { //check if "/*" is or isn't a commentary
 			if ((line.at(i) == '"'))
-				contaAspas++;
+				count++;
 		}
 	}
-	if ((contaAspas % 2) == 0) //in case of even quotation marks it's a commentary
+	if ((count % 2) == 0) //in case of even quotation marks it's a commentary
 		flag = true;
 
 	checkCommentsSlashSlash(line, flag, Target); //check the "//" comments
@@ -45,7 +45,7 @@ void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 		if (line.find("*/") < line.length()) //when it finds the end of commentary, it restarts to copy
 			flag = false;
 	}
-}//end FFiles::checkComments
+}//конец checkComments()
 
 
 void Comments::remove_comments(ifstream& Source, ofstream& Target)
@@ -59,5 +59,5 @@ void Comments::remove_comments(ifstream& Source, ofstream& Target)
 		//checks comments for the read line
 		checkComments(line, flag, Target);
 
-	}//end while
+	}//конец while
 }//end FFiles::remove_comments

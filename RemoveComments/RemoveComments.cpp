@@ -14,11 +14,11 @@ int main()
 	ifstream source; // объекты fstream
 	ofstream target;
 	do {
-		cout << "Введите имя файла: ";
+		cout << "Введите имя файла для редактирования: ";
 		cin >> infile;
 	} while (source.fail());//пока файл не откроется повторять запрос файла
 
-	cout << "Enter Output File Name: ";
+	cout << "Введите имя для измененного файла: ";
 	cin >> outfile;
 
 	source.open(infile.c_str());
