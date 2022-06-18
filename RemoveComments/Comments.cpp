@@ -7,7 +7,7 @@ using namespace std;
 
 
 //функция поиска двойного слэша//
-void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Target)
+void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Target)//передаем указатель на строку
 {
 	if (!flag)
 	{
@@ -16,10 +16,13 @@ void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Targe
 			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) // если строка содержит два подряд '//' завершить перебор строки
 				break;
 			else
-				Target << line[i]; // копировать символ позиции i в исходящий поток
+				Target << line[i]; // иначе копировать символ позиции i в исходящий поток
+			cout << line.at(i);  //ВЫВОД КОПИРУЕМЫХ СИМВОЛОВ СТРОКИ В ПАНЕЛЬ (или cout << line[i]);///
 		}
-		Target << endl;
+		Target << endl;//записать в конечный файл перевод строки
+		cout << endl;		
 	}
+	
 }//конец checkCommentsSlashSlash
 
 void Comments::checkComments(string& line, bool& flag, ofstream& Target)
@@ -39,25 +42,26 @@ void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 		flag = true;
 
 	checkCommentsSlashSlash(line, flag, Target); //check the "//" comments
+	
 
 	if (flag)
 	{
 		if (line.find("*/") < line.length()) //when it finds the end of commentary, it restarts to copy
 			flag = false;
 	}
-}//конец checkComments()
+	
+}//конец checkComments()//
 
 
 void Comments::remove_comments(ifstream& Source, ofstream& Target)
 {
-	string line; //auxiliar string to store the read line
+	string line; //доп. строка для хранения прочитанной строки
 	bool flag = false;
 
-	while (!Source.eof()) // This loop is to get assure that the whole input file is read.
+	while (!Source.eof()) //пока не достигнут конец файла
 	{
-		getline(Source, line); // To read line by line.
-		//checks comments for the read line
-		checkComments(line, flag, Target);
-
-	}//конец while
-}//end Comments::remove_comments
+		getline(Source, line); // читать строку за строкой из Source и помещать в line	
+		//cout << line << endl;             //ВЫВОД ПРОЧИТАННЫХ СТРОК В ПАНЕЛЬ//
+		checkComments(line, flag, Target);//проверка комментариев для прочитанной строки		
+	}//конец while	
+}//конец remove_comments()
