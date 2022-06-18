@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 int main()
 {
 	setlocale(LC_ALL, "rus");
@@ -19,15 +20,13 @@ int main()
 	//	cout << "Введите имя файла для редактирования: ";
 	//	cin >> infile;
 	//} while (source.fail());//пока файл не откроется повторять запрос файла
-
+	
+	Comments check;
 	do {
 		cout << "Введите имя файла для редактирования: ";
-		cin >> infile;
-		source.open(infile);
+		cin >> infile;		
+	} while (!check.check_file(source, infile));
 		
-	} while (source.fail());//пока файл не откроется повторять запрос файла
-
-	
 
 	cout << "Введите имя для измененного файла: ";
 	cin >> outfile;

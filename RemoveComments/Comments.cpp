@@ -47,6 +47,17 @@ void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 	}
 }//конец checkComments()
 
+//функция проверки открытия файла//
+bool Comments::check_file(ifstream &source, string name)
+{
+	source.open(name.c_str(), ios::in);
+	if (source) {
+		return true;
+	}	
+	return false;
+}
+
+
 
 void Comments::remove_comments(ifstream& Source, ofstream& Target)
 {
