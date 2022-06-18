@@ -17,12 +17,14 @@ int main()
 	ifstream source, temp; // объявление объектов fstream
 	ofstream target;
 	
+	//цикл проверки открытия файла//
 	do {
 		cout << "Введите имя файла для редактирования: ";
-		cin >> infile;		
-		temp.open(infile);
-	} while (!temp.is_open());
+		cin >> infile;
+		source.open(infile);
+	} while (!source.is_open());
 	//while (temp.fail()); //вариант проверки с fail()
+	source.close();
 	
 
 	cout << "Введите имя для измененного файла: ";
