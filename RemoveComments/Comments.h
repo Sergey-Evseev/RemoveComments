@@ -10,7 +10,5 @@ public:
 	void checkCommentsSlashSlash(string&, bool&, ofstream&);
 	void checkComments(string&, bool&, ofstream&);
 
-	bool check_file(ifstream &source, string name);
-
 };
 

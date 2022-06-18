@@ -6,14 +6,14 @@
 using namespace std;
 
 
-
+//функция поиска двойного слэша//
 void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Target)
 {
 	if (!flag)
 	{
 		for (int i = 0; i < line.length(); ++i)
 		{
-			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) // если строка содержит два подряд // закончить цикл проверки
+			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) // если строка содержит два подряд '//' завершить перебор строки
 				break;
 			else
 				Target << line[i]; // копировать символ позиции i в исходящий поток
@@ -47,17 +47,6 @@ void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 	}
 }//конец checkComments()
 
-//функция проверки открытия файла//
-bool Comments::check_file(ifstream &source, string name)
-{
-	source.open(name.c_str(), ios::in);
-	if (source) {
-		return true;
-	}	
-	return false;
-}
-
-
 
 void Comments::remove_comments(ifstream& Source, ofstream& Target)
 {
@@ -71,4 +60,4 @@ void Comments::remove_comments(ifstream& Source, ofstream& Target)
 		checkComments(line, flag, Target);
 
 	}//конец while
-}//end FFiles::remove_comments
+}//end Comments::remove_comments

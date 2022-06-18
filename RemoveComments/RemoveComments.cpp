@@ -14,19 +14,16 @@ int main()
 	Comments readFile;
 
 	string infile, outfile; //строки для имен файлов чтения и записи
-	ifstream source; // объявление объектов fstream
+	ifstream source, temp; // объявление объектов fstream
 	ofstream target;
-	//do {
-	//	cout << "Введите имя файла для редактирования: ";
-	//	cin >> infile;
-	//} while (source.fail());//пока файл не откроется повторять запрос файла
 	
-	Comments check;
 	do {
 		cout << "Введите имя файла для редактирования: ";
 		cin >> infile;		
-	} while (!check.check_file(source, infile));
-		
+		temp.open(infile);
+	} while (!temp.is_open());
+	//while (temp.fail()); //вариант проверки с fail()
+	
 
 	cout << "Введите имя для измененного файла: ";
 	cin >> outfile;
