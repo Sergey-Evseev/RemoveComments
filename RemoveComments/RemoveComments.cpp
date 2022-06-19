@@ -24,10 +24,10 @@ int main()
 	} while (!source.is_open()); //или while (temp.fail()); 
 	
 	//вывод в панель первоначального файла//
+	cout << endl;
 	string line;
-	while (getline(source, line))
-	{
-		getline(source, line);//получать строку из файла, записывать в строку
+	while (getline(source, line))//пока функция получает строки из файла записывать их в строку
+	{		
 		cout << line << endl;
 	}
 	cout << "================= КОНЕЦ ПЕРВОНАЧАЛЬНОГО ФАЙЛА ===================" << "\n\n";	
@@ -36,14 +36,15 @@ int main()
 
 	cout << "Введите имя для измененного файла: ";
 	cin >> outfile;
+	cout << endl;
 
 	source.open(infile.c_str());//инициализация потоков переданным строкой адресом
 	target.open(outfile.c_str()); //функция c_str() возвращает указатель на массив содержащий текущую подстроку
 
+	//запуск основной функции//
 	readFile.remove_comments(source, target); //вызов основной функции
 
-	source.close();//закрытие потоков
-	
+	source.close();//закрытие потоков	
 	target.close();
 
 	return 0;
