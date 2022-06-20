@@ -20,8 +20,7 @@ void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Targe
 		}
 		Target << endl;//записать в конечный файл перевод строки
 		cout << endl; //ВЫВОД перевода строки		
-	}
-	
+	}	
 }//конец checkCommentsSlashSlash
 
 //функция поиска /* и */ с защитой от ложных срабатываний в случае ввода /* как строки ("/*")
@@ -60,4 +59,4 @@ void Comments::remove_comments(ifstream& Source, ofstream& Target)
 		getline(Source, line); // читать строку за строкой из Source и помещать в line			
 		checkComments(line, flag, Target);//проверка комментариев для прочитанной строки		
 	}
-}//конец remove_comments()
+}//конец remove_comments()//
