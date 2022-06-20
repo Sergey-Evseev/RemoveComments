@@ -1,7 +1,7 @@
 #include // ""  // 
-using // test
+using "/*" // test"
 //test 
-/*   test   */
+/*   "test"  */
 "test";
 { 
 //	

@@ -13,19 +13,19 @@ int main()
 	Comments readFile;
 
 	string infile, outfile; //строки дл€ имен файлов чтени€ и записи
-	ifstream source; // объ€вление объектов fstream
+	ifstream source; // объ€вление объектов класса fstream
 	ofstream target;
 	
 	//цикл проверки открыти€ файла//
 	do {
 		cout << "¬ведите им€ файла дл€ редактировани€: ";
 		cin >> infile;
-		source.open(infile);
-	} while (!source.is_open()); //или while (temp.fail()); 
+		source.open(infile);//ассоциаци€ потока с файлом
+	} while (!source.is_open()); //или while (temp.fail()); *is_open() возвр. true если файл открыт и св€зан с этим объектом потока
 	
 	//вывод в панель первоначального файла//
 	cout << endl;
-	string line;
+	string line; //временна€ строкова€ переменна€
 	while (getline(source, line))//пока функци€ получает строки из файла записывать их в строку
 	{		
 		cout << line << endl;
@@ -37,14 +37,14 @@ int main()
 	cout << "¬ведите им€ дл€ измененного файла: ";
 	cin >> outfile;
 	cout << endl;
-
+	//ѕ–ќ¬≈–»“№
 	source.open(infile.c_str());//инициализаци€ потоков переданным строкой адресом
 	target.open(outfile.c_str()); //функци€ c_str() возвращает указатель на массив содержащий текущую подстроку
 
 	//запуск основной функции//
 	readFile.remove_comments(source, target); //вызов основной функции
 
-	source.close();//закрытие потоков	
+	source.close();//закрытие потоков (отв€зка потоков от файлов)	
 	target.close();
 
 	return 0;
