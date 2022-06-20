@@ -27,7 +27,7 @@ void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Targe
 //функция поиска /* и */ с защитой от ложных срабатываний в случае ввода /* как строки ("/*")
 void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 {
-	int count = 1; //инициализирован 1, так как если не найдет "/*" флаг не будет установлен на true 
+	int count = 1; //инициализирован 1, так как если не найдет "/*" флаг не будет установлен на true (в 40-й строке кода)
 	if (line.find("/*") < line.length()) // если в строке нашли "/*"  
 	//функция find() ищет вперед по строке до первого нахождения подстроки которая содержит искомые символы и возвращает ее позицию	
 	{
@@ -49,11 +49,11 @@ void Comments::checkComments(string& line, bool& flag, ofstream& Target)
 	}	
 }//конец checkComments()//
 
-
+//функция считывания строк и передачи их в checkComments()//
 void Comments::remove_comments(ifstream& Source, ofstream& Target)
 {
-	string line; //доп. строка для хранения прочитанной строки (по умолчанию пустая)
-	bool flag = false;//флаг чтобы искать '//' в checkCommentsSlashSlash и передавать данные в исходящий поток
+	string line; //доп. строка для хранения прочитанной строки (изначально пустая)
+	bool flag = false;//флаг для того чтобы искать '//' в checkCommentsSlashSlash и передавать там данные в исходящий поток
 
 	while (!Source.eof()) //пока не достигнут конец файла
 	{

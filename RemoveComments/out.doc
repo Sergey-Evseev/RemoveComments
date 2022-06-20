@@ -1,0 +1,49 @@
+#include "Comments.h"
+#include <string>
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+
+void Comments::checkCommentsSlashSlash(string& line, bool& flag, ofstream& Target)
+{
+	if (!flag)
+	{
+		for (int i = 0; i < line.length(); ++i)
+		{
+			if ((line.at(i) == '/') && (line.at(i + 1) == '/')) 
+				break;
+			else
+				Target << line[i]; 
+			cout << line.at(i);  
+		}
+		Target << endl;
+		cout << endl; 
+	}
+	
+}
+
+void Comments::checkComments(string& line, bool& flag, ofstream& Target)
+{
+	int count = 1; 
+	if (line.find("/*") < line.length()) 
+	
+	{
+			flag = false;
+	}	
+}
+
+
+void Comments::remove_comments(ifstream& Source, ofstream& Target)
+{
+	string line; 
+	bool flag = false;
+
+	while (!Source.eof()) 
+	{
+		getline(Source, line); 
+		checkComments(line, flag, Target);
+	}
+}
+
